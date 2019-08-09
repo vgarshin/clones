@@ -173,8 +173,6 @@ def get_json_clones(url_main, dest_email, query_id, max_len=MAX_LEN, min_time_sl
         list_clones = []
         vector_url_main = get_vector_w2v(text_main, w2v_model)
         for link in tqdm(search_links):
-        #for link in tqdm(search_links[:2]): #!!!TEST!!!
-            #print(link) #!!!TEST!!!
             try:
                 text_clone = get_text(link)
                 vector_link = get_vector_w2v(text_clone, w2v_model)
@@ -237,8 +235,6 @@ def send_mail(dest_email, email_text):
         subject = 'Search clones notofication'
         message = 'From: {}\nTo: {}\nSubject: {}\n\n{}'.format(email, dest_email, subject, email_text)
         server = smtp.SMTP_SSL('smtp.yandex.com')
-        #server.set_debuglevel(1)
-        #server.ehlo(email)
         server.login(email, password)
         server.auth_plain()
         server.sendmail(email, dest_email, message)
